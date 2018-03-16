@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Spring Security Example</title>
@@ -7,6 +8,37 @@
 <body>
 <h4>New User Registration</h4>
 <form autocomplete="off" action="#" th:action="@{/register}"
-      th:object="$"
+      th:object="${user}" method="post">
+    First Name <mark><strong>
+    <span th:if="${#fields.hasErrors('firstname')}"
+          th:errors="*{firstname}">First Name Error</span>
+</strong></mark>
+    <input type="text" id="firstname" placeholder="First Name"
+    th:field="*{firstname}"/><br />
+    Last Name <mark><strong><span th:if="${#fields.hasErrors('lastname')}"
+    th:errors="*{lastname}">Last Name Error</span>
+</strong></mark>
+    <input type="text" id="lastname" placeholder="Last Name"
+    th:field="*{lastname}" /><br />
+    Email <mark><strong>
+    <span th:if="${#fields.hasErrors('email')}"
+          th:errors="*{email}">Email Error</span>
+</strong></mark>
+    <input type="text" id="email" placeholder="Email"
+    th:field="*{email}"/><br />
+    Username <mark><strong>
+    <span th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}">Username Error</span>
+</strong></mark>
+    <input type="text" id="username" placeholder="Username"
+    th:field="*{username}"/><br />
+    Password <mark><strong>
+    <span th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Password Error</span>
+    </strong></mark>
+    <input type="text" id="password" placeholder="Password"
+           th:field="*{password}" /><br />
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </body>
 </html>
